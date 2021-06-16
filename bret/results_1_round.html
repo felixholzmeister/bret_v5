@@ -1,0 +1,36 @@
+    {{ if de }}
+    Sie haben sich entschieden %(boxes_collected)s von %(boxes_total)s Boxen zu
+    sammeln.
+    {{ else }}
+    You chose to collect {{ boxes_collected }} out of {{ boxes_total }} boxes.
+    {{ endif }}
+
+    <br/>
+    {{ if de }}
+    Die Bombe war hinter der Box in Reihe {{ bomb_row }}, Spalte {{ bomb_col }} versteckt.
+    {{ else }}
+    The bomb was hidden behind the box in row {{ bomb_row }}, column {{ bomb_col }}.
+    {{ endif }}
+    <br/>
+    <br/>
+    {{ if bomb }}
+        {{ if de }}
+        The bomb was among your {{ boxes_collected }} collected boxes.<br/>
+        Accordingly, all your earnings in this task were destroyed and your payoff amounts to {{ payoff }}.
+        {{ else }}
+        Die Bombe befand sich unter den von Ihnen gesammelten {{ boxes_collected }}
+        Boxen.<br/> Entsprechend wurden alle Ihre gesammelten Erträge zerstört und
+        Ihre Auszahlung in dieser Aufgabe beträgt {{ payoff }}.
+        {{ endif }}
+    {{ else }}
+        {{ if de }}
+        Die Bombe war nicht unter den von Ihnen eingesammelten Boxen.<br/>
+        Dementsprechend erhalten Sie {{ box_value }} für jede der {{ boxes_collected }}
+        Boxen, sodass sich Ihre Auszahlung in dieser Aufgabe auf <b>%(payoff)s</b>
+        beläuft.
+        {{ else }}
+        Your collected boxes did not contain the bomb.<br/>
+        Thus, you receive {{ box_value }} for each of the {{ boxes_collected }} boxes
+        you collected such that your payoff from this task amounts to <b>{{ payoff }}</b>.
+        {{ endif }}
+    {{ endif }}

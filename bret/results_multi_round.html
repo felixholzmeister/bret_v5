@@ -1,0 +1,59 @@
+{{ if de }}
+    Die nachfolgende Tabelle fasst die Ergebnisse Ihrer Entscheidungen in den
+    {{ Constants.num_rounds }} gespielten Runden zusammen.
+{{ else }}
+    The table below summarizes the results of your decisions in the
+    {{ Constants.num_rounds }} rounds played.
+{{ endif }}
+</div>
+
+    <div class="card">
+        <div class="card-header">
+            <b>{{ Lexicon.round_history }}</b>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>{{ Lexicon.round_number }}</th>
+                    <th>{{ Lexicon.boxes_collected }}</th>
+                    <th>{{ Lexicon.bomb_collected }}</th>
+                    <th>{{ Lexicon.round_payoff }}</th>
+                </tr>
+                {{ for p in player_in_all_rounds }}
+                <tr>
+                    <td>{{ p.round_number }}</td>
+                    <td>{{ p.boxes_collected }}</td>
+                    <td>
+                        {{ if p.bomb }}
+                            {{ Lexicon.yes }}
+                        {{ else }}
+                            {{ Lexicon.no }}
+                        {{ endif }}
+                    </td>
+                    <td>{{ p.round_result }}</td>
+                </tr>
+                {{ endfor }}
+            </table>
+        </div>
+    </div>
+
+    <div class="card card-info">
+    {{ if RANDOM_PAYOFF }}
+        {{ if de }}
+            Für Ihre Auszahlung wurde Runde Nr. {{ round_to_pay }} zufällig ausgewählt.<br/>
+            Entsprechend beträgt ihre Auszahlung aus dieser Aufgabe {{ total_payoff }}.
+        {{ else }}
+            For your payment, round number {{ round_to_pay }} was randomly chosen. <br/>
+            Thus, your final payoff in this task amounts to {{ total_payoff }}.
+        {{ endif }}
+    {{ else }}
+        {{ if de }}
+            Ihre Auszahlung wird durch die Summe aller gesammelten Beträge in allen
+            Runden bestimmt. Dementsprechend beträgt Ihre Auszahlung aus dieser Aufgabe {{ total_payoff }}.
+        {{ else }}
+            Your final payoff is determined by the sum of all payoffs per round
+            such that you final payoff in this task amounts to {{ total_payoff }}.
+        {{ endif }}
+    {{ endif }}
+    </div>
