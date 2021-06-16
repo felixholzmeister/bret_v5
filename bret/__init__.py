@@ -102,7 +102,6 @@ class Instructions(Page):
     # variables for use in template
     @staticmethod
     def vars_for_template(player: Player):
-        print(config_dict)
         return dict(
             num_boxes=NUM_ROWS * NUM_COLS,
             num_nobomb=NUM_ROWS * NUM_COLS - 1,
@@ -137,7 +136,6 @@ class Game(Page):
             input = False
         else:
             input = not DEVILS_GAME
-        print(reset)
         return dict(reset=reset, input=input, **config_dict)
 
     @staticmethod

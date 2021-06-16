@@ -4,7 +4,7 @@ class Lexicon:
     boxes_remaining = "Anzahl der verbleibenden Boxen:"
     boxes_to_collect = "Anzahl der zu sammelnden Boxen:"
     instructions = "Instruktionen"
-    no = "No"
+    no = "Nein"
     results = "Ergebnis"
     round_history = "Rundenübersicht"
     round_number = "Runde"
