@@ -1,0 +1,22 @@
+{{ block styles }}
+    <link href="{{ static 'bret/css/custom.css' }}" rel="stylesheet"/>
+{{ endblock }}
+
+{{ block title }}
+    {{ Lexicon.results }}
+{{ endblock }}
+
+
+{{ block content }}
+
+    <div class="card card-info">
+{{ if Constants.num_rounds == 1 }}
+    {{ include Constants.results_1_round_template }}
+{{ else }}
+    {{ include Constants.results_multi_round_template }}
+{{ endif }}
+
+    <br/>
+    {{ next_button }}
+
+{{ endblock }}

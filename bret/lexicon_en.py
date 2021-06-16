@@ -1,0 +1,16 @@
+class Lexicon:
+    bomb_collected = "Bomb collected"
+    boxes_collected = "Number of boxes collected"
+    boxes_remaining = "Number of boxes remaining"
+    boxes_to_collect = "Number of boxes to collect"
+    instructions = "Instructions"
+    no = "No"
+    results = 'Results'
+    round_history = "Round history"
+    round_number = "Round no."
+    round_payoff = "Round payoff"
+    solve = "Solve"
+    start = "Start"
+    stop = "Stop"
+    yes = "Yes"
+    your_decision = "Your decision"
