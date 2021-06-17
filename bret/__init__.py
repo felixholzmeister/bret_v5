@@ -56,13 +56,9 @@ class Player(BasePlayer):
     # whether bomb is collected or not
     # store as integer because it's easier for interop with JS
     bomb = models.IntegerField()
-    # location of bomb
     bomb_row = models.IntegerField()
     bomb_col = models.IntegerField()
-    # number of collected boxes
     boxes_collected = models.IntegerField()
-    # --- set round results and player's payoff
-    # ------------------------------------------------------------------------------------------------------------------
     pay_this_round = models.BooleanField()
     round_result = models.CurrencyField()
 
@@ -77,8 +73,6 @@ def set_payoff(player: Player):
         player.round_result = cu(0)
     else:
         player.round_result = player.boxes_collected * BOX_VALUE
-    # set payoffs if <random_payoff = True> to round_result of randomly chosen round
-    # randomly determine round to pay on player level
     if round_number == 1:
         participant.vars['round_to_pay'] = random.randint(1, NUM_ROUNDS)
     if RANDOM_PAYOFF:
@@ -88,18 +82,15 @@ def set_payoff(player: Player):
         else:
             player.pay_this_round = False
             player.payoff = cu(0)
-    # set payoffs to round_result if <random_payoff = False>
     else:
         player.payoff = player.round_result
 
 
 class Instructions(Page):
-    # only display instruction in round 1
     @staticmethod
     def is_displayed(player: Player):
         return INSTRUCTIONS and player.round_number == 1
 
-    # variables for use in template
     @staticmethod
     def vars_for_template(player: Player):
         return dict(
@@ -128,9 +119,6 @@ class Game(Page):
     @staticmethod
     def js_vars(player: Player):
         participant = player.participant
-        # in 1st round, reset is False, even when the page is reloaded.
-        # in 2nd round, reset is True, the first time it's reloaded.
-        # basically, it needs to be reset after each game.
         reset = participant.vars.pop('reset', False)
         if DYNAMIC:
             input = False
@@ -145,12 +133,10 @@ class Game(Page):
 
 
 class Results(Page):
-    # only display results after all rounds have been played
     @staticmethod
     def is_displayed(player: Player):
         return RESULTS and player.round_number == NUM_ROUNDS
 
-    # variables for use in template
     @staticmethod
     def vars_for_template(player: Player):
         participant = player.participant

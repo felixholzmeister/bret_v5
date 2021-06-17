@@ -1,5 +1,5 @@
     {{ if de }}
-    Sie haben sich entschieden %(boxes_collected)s von %(boxes_total)s Boxen zu
+    Sie haben sich entschieden {{ boxes_collected }} von {{ boxes_total }} Boxen zu
     sammeln.
     {{ else }}
     You chose to collect {{ boxes_collected }} out of {{ boxes_total }} boxes.
@@ -15,18 +15,18 @@
     <br/>
     {{ if bomb }}
         {{ if de }}
-        The bomb was among your {{ boxes_collected }} collected boxes.<br/>
-        Accordingly, all your earnings in this task were destroyed and your payoff amounts to {{ payoff }}.
-        {{ else }}
         Die Bombe befand sich unter den von Ihnen gesammelten {{ boxes_collected }}
         Boxen.<br/> Entsprechend wurden alle Ihre gesammelten Erträge zerstört und
         Ihre Auszahlung in dieser Aufgabe beträgt {{ payoff }}.
+        {{ else }}
+        The bomb was among your {{ boxes_collected }} collected boxes.<br/>
+        Accordingly, all your earnings in this task were destroyed and your payoff amounts to {{ payoff }}.
         {{ endif }}
     {{ else }}
         {{ if de }}
         Die Bombe war nicht unter den von Ihnen eingesammelten Boxen.<br/>
         Dementsprechend erhalten Sie {{ box_value }} für jede der {{ boxes_collected }}
-        Boxen, sodass sich Ihre Auszahlung in dieser Aufgabe auf <b>%(payoff)s</b>
+        Boxen, sodass sich Ihre Auszahlung in dieser Aufgabe auf <b>{{ payoff }}</b>
         beläuft.
         {{ else }}
         Your collected boxes did not contain the bomb.<br/>
